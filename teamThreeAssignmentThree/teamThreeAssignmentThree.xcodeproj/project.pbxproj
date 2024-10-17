@@ -13,6 +13,9 @@
 		EFB385652CC0629E001EC34D /* Base in Resources */ = {isa = PBXBuildFile; fileRef = EFB385642CC0629E001EC34D /* Base */; };
 		EFB385672CC0629F001EC34D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EFB385662CC0629F001EC34D /* Assets.xcassets */; };
 		EFB3856A2CC0629F001EC34D /* Base in Resources */ = {isa = PBXBuildFile; fileRef = EFB385692CC0629F001EC34D /* Base */; };
+		EFB385752CC0665D001EC34D /* ModuleAViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFB385742CC0665D001EC34D /* ModuleAViewController.swift */; };
+		EFB385772CC06669001EC34D /* ModuleBViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFB385762CC06669001EC34D /* ModuleBViewController.swift */; };
+		EFB385792CC068AF001EC34D /* MotionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFB385782CC068AF001EC34D /* MotionModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +27,10 @@
 		EFB385662CC0629F001EC34D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		EFB385692CC0629F001EC34D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		EFB3856B2CC0629F001EC34D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		EFB385712CC063A7001EC34D /* teamThreeAssignmentThree.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = teamThreeAssignmentThree.entitlements; sourceTree = "<group>"; };
+		EFB385742CC0665D001EC34D /* ModuleAViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModuleAViewController.swift; sourceTree = "<group>"; };
+		EFB385762CC06669001EC34D /* ModuleBViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModuleBViewController.swift; sourceTree = "<group>"; };
+		EFB385782CC068AF001EC34D /* MotionModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MotionModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,9 +63,13 @@
 		EFB3855C2CC0629E001EC34D /* teamThreeAssignmentThree */ = {
 			isa = PBXGroup;
 			children = (
+				EFB385712CC063A7001EC34D /* teamThreeAssignmentThree.entitlements */,
 				EFB3855D2CC0629E001EC34D /* AppDelegate.swift */,
 				EFB3855F2CC0629E001EC34D /* SceneDelegate.swift */,
 				EFB385612CC0629E001EC34D /* ViewController.swift */,
+				EFB385742CC0665D001EC34D /* ModuleAViewController.swift */,
+				EFB385782CC068AF001EC34D /* MotionModel.swift */,
+				EFB385762CC06669001EC34D /* ModuleBViewController.swift */,
 				EFB385632CC0629E001EC34D /* Main.storyboard */,
 				EFB385662CC0629F001EC34D /* Assets.xcassets */,
 				EFB385682CC0629F001EC34D /* LaunchScreen.storyboard */,
@@ -138,7 +149,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EFB385752CC0665D001EC34D /* ModuleAViewController.swift in Sources */,
+				EFB385772CC06669001EC34D /* ModuleBViewController.swift in Sources */,
 				EFB385622CC0629E001EC34D /* ViewController.swift in Sources */,
+				EFB385792CC068AF001EC34D /* MotionModel.swift in Sources */,
 				EFB3855E2CC0629E001EC34D /* AppDelegate.swift in Sources */,
 				EFB385602CC0629E001EC34D /* SceneDelegate.swift in Sources */,
 			);
@@ -290,11 +304,15 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = teamThreeAssignmentThree/teamThreeAssignmentThree.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 2VC6YTM2SL;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = teamThreeAssignmentThree/Info.plist;
+				INFOPLIST_KEY_NSHealthShareUsageDescription = "This app uses health data to track your steps and activity.";
+				INFOPLIST_KEY_NSHealthUpdateUsageDescription = "This app uses health data to track and update your steps.";
+				INFOPLIST_KEY_NSMotionUsageDescription = "This app uses motion data to track your physical activity.";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
@@ -318,11 +336,15 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = teamThreeAssignmentThree/teamThreeAssignmentThree.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 2VC6YTM2SL;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = teamThreeAssignmentThree/Info.plist;
+				INFOPLIST_KEY_NSHealthShareUsageDescription = "This app uses health data to track your steps and activity.";
+				INFOPLIST_KEY_NSHealthUpdateUsageDescription = "This app uses health data to track and update your steps.";
+				INFOPLIST_KEY_NSMotionUsageDescription = "This app uses motion data to track your physical activity.";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;

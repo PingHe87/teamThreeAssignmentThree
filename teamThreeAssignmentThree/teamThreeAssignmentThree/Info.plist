@@ -11,6 +11,12 @@
 			<key>UIWindowSceneSessionRoleApplication</key>
 			<array>
 				<dict>
+					<key>NSHealthShareUsageDescription</key>
+					<string>This app uses health data to track your steps and activity.</string>
+					<key>NSHealthUpdateUsageDescription</key>
+					<string>This app uses health data to track and update your steps.</string>
+					<key>NSMotionUsageDescription</key>
+					<string>This app uses motion data to track your physical activity.</string>
 					<key>UISceneConfigurationName</key>
 					<string>Default Configuration</string>
 					<key>UISceneDelegateClassName</key>
@@ -21,5 +27,19 @@
 			</array>
 		</dict>
 	</dict>
+	<key>UIBackgroundModes</key>
+	<array>
+		<string>audio</string>
+		<string>bluetooth-central</string>
+		<string>bluetooth-peripheral</string>
+		<string>external-accessory</string>
+		<string>fetch</string>
+		<string>location</string>
+		<string>nearby-interaction</string>
+		<string>processing</string>
+		<string>push-to-talk</string>
+		<string>remote-notification</string>
+		<string>voip</string>
+	</array>
 </dict>
 </plist>
