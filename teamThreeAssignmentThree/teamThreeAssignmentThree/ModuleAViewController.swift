@@ -12,6 +12,7 @@ class ModuleAViewController: UIViewController {
     
     let motionModel = MotionModel()
     var stepGoal: Int = 1000 // 默认步数目标
+    var currentSteps: Int = 0 // 保存当前步数
 
     // MARK: - Outlets
     @IBOutlet weak var stepsTodayLabel: UILabel!
@@ -21,8 +22,6 @@ class ModuleAViewController: UIViewController {
     @IBOutlet weak var activityLabel: UILabel!
     @IBOutlet weak var stepsProgressLabel: UILabel!
     @IBOutlet weak var progressBar: UIProgressView!
-
-    var currentSteps: Int = 0 // 用于保存当前步数
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -43,6 +42,24 @@ class ModuleAViewController: UIViewController {
 
         // 加载用户设置的目标步数
         loadStepGoal()
+
+        // 设置 UILabel 的初始默认值
+        stepsTodayLabel.text = "Today's Steps: 0"
+        stepsYesterdayLabel.text = "Yesterday's Steps: 0"
+        stepsRemainingLabel.text = "Steps to Goal: \(stepGoal)"
+        activityLabel.text = "Current Activity: Unknown"
+        stepsProgressLabel.text = "0/\(stepGoal)"
+        progressBar.progress = 0.0
+
+        // 添加点击手势识别器，点击空白处关闭键盘
+        let tap = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
+        view.addGestureRecognizer(tap)
+    }
+
+
+    // MARK: - 关闭键盘
+    @objc func dismissKeyboard() {
+        view.endEditing(true)
     }
 
     // MARK: - 目标步数功能
@@ -50,9 +67,14 @@ class ModuleAViewController: UIViewController {
         if let goalText = stepsGoalTextField.text, let goal = Int(goalText) {
             UserDefaults.standard.set(goal, forKey: "stepGoal")
             stepGoal = goal
-            updateStepsRemaining(currentSteps: currentSteps) // 使用当前步数更新剩余步数
+            
+            // 确保在保存目标步数后更新所有相关的 UI
+            stepsRemainingLabel.text = "Steps to Goal: \(stepGoal - currentSteps)"
+            stepsProgressLabel.text = "\(currentSteps)/\(stepGoal)"
+            progressBar.setProgress(Float(currentSteps) / Float(stepGoal), animated: true)
         }
     }
+
 
     func loadStepGoal() {
         stepGoal = UserDefaults.standard.integer(forKey: "stepGoal")
@@ -78,22 +100,22 @@ extension ModuleAViewController: MotionDelegate {
     func activityUpdated(activity: CMMotionActivity) {
         var activityType = "Unknown"
         if activity.walking {
-            activityType = "🚶Walking"
+            activityType = "Walking"
         } else if activity.running {
-            activityType = "🏃Running"
+            activityType = "Running"
         } else if activity.cycling {
-            activityType = "🚴Cycling"
+            activityType = "Cycling"
         } else if activity.automotive {
-            activityType = "🚘Driving"
+            activityType = "Driving"
         } else if activity.stationary {
-            activityType = "Stationary"
+            activityType = "Still"
         }
         activityLabel.text = "Current Activity: \(activityType)"
     }
 
     func pedometerUpdated(pedData: CMPedometerData) {
         DispatchQueue.main.async {
-            self.currentSteps = pedData.numberOfSteps.intValue // 保存当前步数
+            self.currentSteps = pedData.numberOfSteps.intValue // 保存当前步数到变量
             self.stepsTodayLabel.text = "Today's Steps: \(self.currentSteps)"
             
             // 更新进度条和剩余步数
@@ -101,3 +123,4 @@ extension ModuleAViewController: MotionDelegate {
         }
     }
 }
+
