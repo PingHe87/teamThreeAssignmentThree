@@ -50,6 +50,13 @@ class ModuleAViewController: UIViewController {
         activityLabel.text = "Current Activity: Unknown"
         stepsProgressLabel.text = "0/\(stepGoal)"
         progressBar.progress = 0.0
+        
+        // 调整 progressBar 的高度，使其更粗
+        progressBar.transform = CGAffineTransform(scaleX: 1.0, y: 4.0)
+            
+        // 设置进度条的颜色
+        progressBar.progressTintColor = UIColor.systemMint
+        progressBar.trackTintColor = UIColor.systemGray4
 
         // 添加点击手势识别器，点击空白处关闭键盘
         let tap = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
@@ -83,7 +90,15 @@ class ModuleAViewController: UIViewController {
 
     // 更新剩余步数和进度条
     func updateStepsRemaining(currentSteps: Int) {
-        let remainingSteps = stepGoal - currentSteps
+        // 计算剩余步数
+        var remainingSteps = stepGoal - currentSteps
+        
+        // 如果剩余步数小于 0，则设置为 0
+        if remainingSteps < 0 {
+            remainingSteps = 0
+        }
+        
+        // 更新剩余步数的显示
         stepsRemainingLabel.text = "Steps to Goal: \(remainingSteps)"
         
         // 更新进度条
@@ -93,6 +108,7 @@ class ModuleAViewController: UIViewController {
         // 显示步数进度
         stepsProgressLabel.text = "\(currentSteps)/\(stepGoal)"
     }
+
 }
 
 // MARK: - MotionDelegate
