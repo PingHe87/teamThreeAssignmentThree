@@ -13,6 +13,7 @@ protocol MotionDelegate {
     // Define delegate functions
     func activityUpdated(activity:CMMotionActivity)
     func pedometerUpdated(pedData:CMPedometerData)
+    func accelerometerUpdated(x: Double, y: Double, z: Double)  //add new accelerater
 }
 
 class MotionModel{
@@ -20,6 +21,7 @@ class MotionModel{
     // MARK: =====Class Variables=====
     private let activityManager = CMMotionActivityManager()
     private let pedometer = CMPedometer()
+    private let motionManager = CMMotionManager()
     var delegate:MotionDelegate? = nil
     
     // MARK: =====Motion Methods=====
@@ -64,6 +66,23 @@ class MotionModel{
         }
     }
     
+    //Accelerometer Monitor
+        func startAccelerometerMonitoring() {
+            if motionManager.isAccelerometerAvailable {
+                motionManager.startAccelerometerUpdates(to: OperationQueue.main) { (data, error) in
+                    if let accelerometerData = data, let delegate = self.delegate {
+                        delegate.accelerometerUpdated(x: accelerometerData.acceleration.x, y: accelerometerData.acceleration.y, z: accelerometerData.acceleration.z)
+                    }
+                }
+            }
+        }
+    
+    func stopMonitoring() {
+            activityManager.stopActivityUpdates()
+            pedometer.stopUpdates()
+            motionManager.stopAccelerometerUpdates()
+        }
+        
     // ASS3: Get Yesterday Steps
     func getYesterdaysSteps(completion: @escaping (Double) -> Void) {
             let calendar = Calendar.current

@@ -138,5 +138,9 @@ extension ModuleAViewController: MotionDelegate {
             self.updateStepsRemaining(currentSteps: self.currentSteps)
         }
     }
+    // 实现 accelerometerUpdated 方法，虽然在 ModuleA 中可能不需要用到它，但必须实现
+        func accelerometerUpdated(x: Double, y: Double, z: Double) {
+            // set it bull
+        }
 }
 
