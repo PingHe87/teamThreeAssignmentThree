@@ -70,7 +70,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         addChild(countdownLabel)
         
         // 创建金币
-        for _ in 10...20 {
+        for _ in 20...30 {
             createCoin()
         }
 

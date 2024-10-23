@@ -17,6 +17,7 @@ class ModuleAViewController: UIViewController {
     var stepGoal: Int = 1000 // 默认步数目标
     var currentSteps: Int = 0 // 保存当前步数
     var baselineSteps: Int = 0 // 新增基准步数变量
+    var yesterdaySteps: Int = 0 // 保存昨天步数
 
     // MARK: - Outlets
     @IBOutlet weak var stepsTodayLabel: UILabel!
@@ -39,10 +40,14 @@ class ModuleAViewController: UIViewController {
         // 获取昨天的步数
         self.motionModel.getYesterdaysSteps { steps in
             DispatchQueue.main.async {
-                self.stepsYesterdayLabel.text = "Yesterday's Steps: \(Int(steps))"
+                self.yesterdaySteps = Int(steps)
+                self.stepsYesterdayLabel.text = "Yesterday's Steps: \(self.yesterdaySteps)"
+                
+                // 保存昨天步数到 UserDefaults
+                UserDefaults.standard.set(self.yesterdaySteps, forKey: "yesterdaySteps")
             }
         }
-        
+
         // 获取今天从凌晨到现在的步数
         self.motionModel.getTodaySteps { steps in
             DispatchQueue.main.async {
