@@ -18,7 +18,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="94" translatesAutoresizingMaskIntoConstraints="NO" id="dqs-2W-Bwt">
-                                <rect key="frame" x="116.00000000000001" y="330.66666666666669" width="161.33333333333337" height="190.66666666666669"/>
+                                <rect key="frame" x="116.00000000000001" y="402" width="161.33333333333337" height="48.333333333333314"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="q0X-XU-l9A">
                                         <rect key="frame" x="0.0" y="0.0" width="161.33333333333334" height="48.333333333333336"/>
@@ -32,8 +32,8 @@
                                             <segue destination="FZ6-Cc-AEH" kind="show" id="4pq-E6-bfR"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PBE-oO-KMH">
-                                        <rect key="frame" x="0.0" y="142.33333333333331" width="161.33333333333334" height="48.333333333333343"/>
+                                    <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PBE-oO-KMH">
+                                        <rect key="frame" x="0.0" y="0.0" width="161.33333333333334" height="0.0"/>
                                         <state key="normal" title="Button"/>
                                         <buttonConfiguration key="configuration" style="filled" title="Easy Fun">
                                             <fontDescription key="titleFontDescription" name="Impact" family="Impact" pointSize="28"/>
@@ -220,7 +220,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="kRj-Va-3Kh"/>
+        <segue reference="p0X-1y-37i"/>
     </inferredMetricsTieBreakers>
     <resources>
         <systemColor name="systemGray6Color">

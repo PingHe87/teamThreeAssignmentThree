@@ -177,7 +177,7 @@ extension ModuleAViewController: MotionDelegate {
         func showGoalAchievedAlert() {
             // 创建 UIAlertController
             let alert = UIAlertController(title: "Congratulations!",
-                                          message: "You've reached your step goal! Play a game to relax with 10 extra seconds!",
+                                          message: "You've reached your step goal! Play a game to relax now!",
                                           preferredStyle: .alert)
             
             // 添加 "Play Game" 按钮，点击后导航到 Module B
