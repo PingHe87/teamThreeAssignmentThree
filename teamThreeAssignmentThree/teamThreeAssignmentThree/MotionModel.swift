@@ -48,23 +48,34 @@ class MotionModel{
         
     }
     
-    func startPedometerMonitoring(){
-        // check if pedometer is okay to use
-        if CMPedometer.isStepCountingAvailable(){
-            // start updating the pedometer from the current date and time
-            pedometer.startUpdates(from: Date())
-            {(pedData:CMPedometerData?, error:Error?)->Void in
-                
-                // if no errors, update the delegate
-                if let unwrappedPedData = pedData,
-                   let delegate = self.delegate {
-                    
-                    delegate.pedometerUpdated(pedData:unwrappedPedData)
+//    func startPedometerMonitoring(){
+//        // check if pedometer is okay to use
+//        if CMPedometer.isStepCountingAvailable(){
+//            // start updating the pedometer from the current date and time
+//            pedometer.startUpdates(from: Date())
+//            {(pedData:CMPedometerData?, error:Error?)->Void in
+//                
+//                // if no errors, update the delegate
+//                if let unwrappedPedData = pedData,
+//                   let delegate = self.delegate {
+//                    
+//                    delegate.pedometerUpdated(pedData:unwrappedPedData)
+//                }
+//
+//            }
+//        }
+//    }
+    
+    // 实时监控步数
+    func startPedometerMonitoring() {
+            if CMPedometer.isStepCountingAvailable() {
+                pedometer.startUpdates(from: Date()) { (pedData, error) in
+                    if let unwrappedPedData = pedData, let delegate = self.delegate {
+                        delegate.pedometerUpdated(pedData: unwrappedPedData)
+                    }
                 }
-
             }
         }
-    }
     
     //Accelerometer Monitor
         func startAccelerometerMonitoring() {
@@ -83,6 +94,25 @@ class MotionModel{
             motionManager.stopAccelerometerUpdates()
         }
         
+    //n
+    // 获取今天的步数，从凌晨到当前时间
+        func getTodaySteps(completion: @escaping (Double) -> Void) {
+            let calendar = Calendar.current
+            let startOfDay = calendar.startOfDay(for: Date()) // 获取今天凌晨的时间
+
+            if CMPedometer.isStepCountingAvailable() {
+                pedometer.queryPedometerData(from: startOfDay, to: Date()) { (pedData, error) in
+                    if let pedData = pedData {
+                        completion(pedData.numberOfSteps.doubleValue)
+                    } else {
+                        print("Error retrieving today's steps: \(String(describing: error))")
+                        completion(0)
+                    }
+                }
+            }
+        }
+    
+    
     // ASS3: Get Yesterday Steps
     func getYesterdaysSteps(completion: @escaping (Double) -> Void) {
             let calendar = Calendar.current

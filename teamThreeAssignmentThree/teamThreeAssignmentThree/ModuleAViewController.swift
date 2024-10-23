@@ -42,9 +42,24 @@ class ModuleAViewController: UIViewController {
                 self.stepsYesterdayLabel.text = "Yesterday's Steps: \(Int(steps))"
             }
         }
+        
+        // n
+        // 获取今天从凌晨到现在的步数
+            self.motionModel.getTodaySteps { steps in
+                DispatchQueue.main.async {
+                    self.currentSteps = Int(steps)
+                    self.stepsTodayLabel.text = "Today's Steps: \(self.currentSteps)"
+                    self.updateStepsRemaining(currentSteps: self.currentSteps)
+
+                    // 在获取今天的步数后，开始实时监控步数
+                    self.motionModel.startPedometerMonitoring()
+                }
+            }
 
         // 加载用户设置的目标步数
         loadStepGoal()
+        
+
 
         // 设置 UILabel 的初始默认值
         stepsTodayLabel.text = "Today's Steps: 0"
@@ -54,16 +69,19 @@ class ModuleAViewController: UIViewController {
         stepsProgressLabel.text = "0/\(stepGoal)"
         progressBar.progress = 0.0
         
+        
         // 调整 progressBar 的高度，使其更粗
         progressBar.transform = CGAffineTransform(scaleX: 1.0, y: 4.0)
             
         // 设置进度条的颜色
-        progressBar.progressTintColor = UIColor.systemMint
-        progressBar.trackTintColor = UIColor.systemGray4
-
+        // 将 Hex 颜色 #6256CA 转换为 RGB
+        progressBar.progressTintColor = UIColor(red: 98/255, green: 86/255, blue: 202/255, alpha: 1.0)
+        progressBar.trackTintColor = UIColor.systemGray
+        
         // 添加点击手势识别器，点击空白处关闭键盘
         let tap = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
         view.addGestureRecognizer(tap)
+        
     }
 
 
@@ -112,6 +130,7 @@ class ModuleAViewController: UIViewController {
         stepsProgressLabel.text = "\(currentSteps)/\(stepGoal)"
     }
 
+
 }
 
 // MARK: - MotionDelegate
@@ -127,26 +146,33 @@ extension ModuleAViewController: MotionDelegate {
         } else if activity.automotive {
             activityType = "Driving"
         } else if activity.stationary {
-            activityType = "Still"
+            activityType = "Stationary"
         }
         activityLabel.text = "Current Activity: \(activityType)"
     }
 
     func pedometerUpdated(pedData: CMPedometerData) {
-            DispatchQueue.main.async {
-                self.currentSteps = pedData.numberOfSteps.intValue
-                self.stepsTodayLabel.text = "Today's Steps: \(self.currentSteps)"
-                
-                // 更新进度条和剩余步数
-                self.updateStepsRemaining(currentSteps: self.currentSteps)
-                
-                // 检查用户是否达到了目标步数并且未显示过对话框
-                if self.currentSteps >= self.stepGoal && !self.goalAchievedAlertShown {
-                    self.showGoalAchievedAlert()  // 弹出对话框
-                    self.goalAchievedAlertShown = true  // 标记对话框已经显示
-                }
+        DispatchQueue.main.async {
+            self.currentSteps = pedData.numberOfSteps.intValue
+            self.stepsTodayLabel.text = "Today's Steps: \(self.currentSteps)"
+            
+            // 更新进度条和剩余步数
+            self.updateStepsRemaining(currentSteps: self.currentSteps)
+            
+            // 检查用户是否达到了目标步数并且未显示过对话框
+            if self.currentSteps >= self.stepGoal && !self.goalAchievedAlertShown {
+                // 保存达成目标的状态
+                UserDefaults.standard.set(true, forKey: "stepGoalAchieved")
+                self.showGoalAchievedAlert()  // 弹出对话框
+                self.goalAchievedAlertShown = true  // 标记对话框已经显示
+            } else if self.currentSteps < self.stepGoal {
+                // 如果步数未达到目标，确保保存状态为 false
+                UserDefaults.standard.set(false, forKey: "stepGoalAchieved")
             }
         }
+    }
+
+
         
         func showGoalAchievedAlert() {
             // 创建 UIAlertController

@@ -18,33 +18,37 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="94" translatesAutoresizingMaskIntoConstraints="NO" id="dqs-2W-Bwt">
-                                <rect key="frame" x="89" y="331.33333333333331" width="215" height="189.33333333333331"/>
+                                <rect key="frame" x="116.00000000000001" y="330.66666666666669" width="161.33333333333337" height="190.66666666666669"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="q0X-XU-l9A">
-                                        <rect key="frame" x="0.0" y="0.0" width="215" height="47.666666666666664"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="161.33333333333334" height="48.333333333333336"/>
                                         <state key="normal" title="Button"/>
-                                        <buttonConfiguration key="configuration" style="filled" title="Go To Module A">
-                                            <fontDescription key="titleFontDescription" style="UICTFontTextStyleTitle1"/>
+                                        <buttonConfiguration key="configuration" style="filled" title="Step Master">
+                                            <fontDescription key="titleFontDescription" name="Impact" family="Impact" pointSize="28"/>
+                                            <color key="baseForegroundColor" red="0.38431372549999998" green="0.33725490200000002" blue="0.79215686269999996" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                            <color key="baseBackgroundColor" red="0.75686274509803919" green="0.88627450980392153" blue="0.64313725490196072" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                         </buttonConfiguration>
                                         <connections>
                                             <segue destination="FZ6-Cc-AEH" kind="show" id="4pq-E6-bfR"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PBE-oO-KMH">
-                                        <rect key="frame" x="0.0" y="141.66666666666669" width="215" height="47.666666666666657"/>
+                                        <rect key="frame" x="0.0" y="142.33333333333331" width="161.33333333333334" height="48.333333333333343"/>
                                         <state key="normal" title="Button"/>
-                                        <buttonConfiguration key="configuration" style="filled" title="Go To Module B">
-                                            <fontDescription key="titleFontDescription" style="UICTFontTextStyleTitle1"/>
+                                        <buttonConfiguration key="configuration" style="filled" title="Easy Fun">
+                                            <fontDescription key="titleFontDescription" name="Impact" family="Impact" pointSize="28"/>
+                                            <color key="baseForegroundColor" red="0.38431372549999998" green="0.33725490200000002" blue="0.79215686269999996" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                            <color key="baseBackgroundColor" red="0.75686274509803919" green="0.88627450980392153" blue="0.64313725490196072" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                         </buttonConfiguration>
                                         <connections>
-                                            <segue destination="Aqi-Ez-Igf" kind="show" id="Vcu-tz-9Zr"/>
+                                            <segue destination="Aqi-Ez-Igf" kind="show" id="kRj-Va-3Kh"/>
                                         </connections>
                                     </button>
                                 </subviews>
                             </stackView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="backgroundColor" red="0.99215686274509807" green="0.98039215686274506" blue="0.85098039215686272" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                         <constraints>
                             <constraint firstItem="dqs-2W-Bwt" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="P9Q-GO-8ZQ"/>
                             <constraint firstItem="dqs-2W-Bwt" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="nTh-0c-w5u"/>
@@ -65,53 +69,53 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="Ewp-2Q-KA4" userLabel="top">
-                                <rect key="frame" x="162" y="103" width="69" height="26.666666666666657"/>
+                                <rect key="frame" x="162" y="103" width="69" height="34.333333333333343"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Steps" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KHM-kV-BaE">
-                                        <rect key="frame" x="0.0" y="0.0" width="69" height="26.666666666666668"/>
-                                        <fontDescription key="fontDescription" name="ArialRoundedMTBold" family="Arial Rounded MT Bold" pointSize="23"/>
-                                        <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="69" height="34.333333333333336"/>
+                                        <fontDescription key="fontDescription" name="Impact" family="Impact" pointSize="28"/>
+                                        <color key="textColor" red="0.38431372549999998" green="0.33725490200000002" blue="0.79215686269999996" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                 </subviews>
                             </stackView>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="35" translatesAutoresizingMaskIntoConstraints="NO" id="ut3-Hf-iPq" userLabel="middle">
-                                <rect key="frame" x="16" y="151.66666666666663" width="361" height="290"/>
+                                <rect key="frame" x="16" y="159.33333333333334" width="361" height="271.66666666666663"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Today:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7xE-mc-G9D">
-                                        <rect key="frame" x="0.0" y="0.0" width="70.666666666666671" height="30"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="25"/>
-                                        <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="62" height="26.333333333333332"/>
+                                        <fontDescription key="fontDescription" name="Optima-Bold" family="Optima" pointSize="22"/>
+                                        <color key="textColor" red="0.38431372549999998" green="0.33725490200000002" blue="0.79215686269999996" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Yesterday：" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Uni-mu-hje">
-                                        <rect key="frame" x="0.0" y="65" width="119" height="30"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="25"/>
-                                        <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <rect key="frame" x="0.0" y="61.333333333333321" width="113.33333333333333" height="26.333333333333336"/>
+                                        <fontDescription key="fontDescription" name="Optima-Bold" family="Optima" pointSize="22"/>
+                                        <color key="textColor" red="0.38431372549999998" green="0.33725490200000002" blue="0.79215686269999996" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Your Activity:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zCR-DB-Vuw">
-                                        <rect key="frame" x="0.0" y="130.00000000000003" width="140.33333333333334" height="30"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="25"/>
-                                        <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <rect key="frame" x="0.0" y="122.66666666666664" width="129.33333333333334" height="26.333333333333329"/>
+                                        <fontDescription key="fontDescription" name="Optima-Bold" family="Optima" pointSize="22"/>
+                                        <color key="textColor" red="0.38431372549999998" green="0.33725490200000002" blue="0.79215686269999996" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Steps to Goal:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BjE-fU-87b">
-                                        <rect key="frame" x="0.0" y="195.00000000000003" width="149.66666666666666" height="30"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="25"/>
-                                        <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <rect key="frame" x="0.0" y="183.99999999999997" width="134.66666666666666" height="26.333333333333343"/>
+                                        <fontDescription key="fontDescription" name="Optima-Bold" family="Optima" pointSize="22"/>
+                                        <color key="textColor" red="0.38431372549999998" green="0.33725490200000002" blue="0.79215686269999996" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Steps now:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gQy-VB-Zwk">
-                                        <rect key="frame" x="0.0" y="260" width="118.66666666666667" height="30"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="25"/>
-                                        <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <rect key="frame" x="0.0" y="245.33333333333334" width="103.66666666666667" height="26.333333333333343"/>
+                                        <fontDescription key="fontDescription" name="Optima-Bold" family="Optima" pointSize="22"/>
+                                        <color key="textColor" red="0.38431372549999998" green="0.33725490200000002" blue="0.79215686269999996" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                 </subviews>
                             </stackView>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="43" translatesAutoresizingMaskIntoConstraints="NO" id="GLM-dj-L9N" userLabel="bottom">
-                                <rect key="frame" x="119.66666666666667" y="504.66666666666669" width="153.66666666666663" height="192.33333333333331"/>
+                                <rect key="frame" x="119.66666666666667" y="493.99999999999994" width="153.66666666666663" height="192.33333333333331"/>
                                 <subviews>
                                     <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Set your goal here!" textAlignment="natural" minimumFontSize="20" translatesAutoresizingMaskIntoConstraints="NO" id="imk-R1-qBB">
                                         <rect key="frame" x="1.6666666666666572" y="0.0" width="150.33333333333334" height="34"/>
@@ -120,22 +124,22 @@
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yZP-tZ-Y84">
-                                        <rect key="frame" x="0.3333333333333286" y="76.999999999999943" width="153" height="68.333333333333314"/>
+                                        <rect key="frame" x="0.3333333333333286" y="77" width="153" height="68.333333333333314"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="68.333333333333314" id="eC8-vK-Kpe"/>
                                         </constraints>
                                         <state key="normal" title="Button"/>
                                         <buttonConfiguration key="configuration" style="filled" title="Set Your Goal">
-                                            <fontDescription key="titleFontDescription" style="UICTFontTextStyleTitle3"/>
+                                            <fontDescription key="titleFontDescription" name="Impact" family="Impact" pointSize="22"/>
+                                            <color key="baseForegroundColor" red="0.38431372549999998" green="0.33725490200000002" blue="0.79215686269999996" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                            <color key="baseBackgroundColor" red="0.75686274509999996" green="0.8862745098" blue="0.64313725489999995" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                         </buttonConfiguration>
                                         <connections>
                                             <action selector="saveStepGoal:" destination="FZ6-Cc-AEH" eventType="touchUpInside" id="91Y-Qh-Xs4"/>
                                         </connections>
                                     </button>
                                     <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" progress="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="BNt-gx-tbb">
-                                        <rect key="frame" x="1.6666666666666572" y="188.33333333333331" width="150.33333333333334" height="4"/>
-                                        <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <color key="tintColor" red="0.0" green="0.56284224989999998" blue="0.31881666180000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <rect key="frame" x="1.6666666666666572" y="188.33333333333337" width="150.33333333333334" height="4"/>
                                         <color key="progressTintColor" systemColor="systemGreenColor"/>
                                         <color key="trackTintColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     </progressView>
@@ -151,7 +155,7 @@
                             </stackView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="Way-6g-Bv4"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="backgroundColor" red="0.99215686270000003" green="0.98039215690000003" blue="0.85098039219999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                         <constraints>
                             <constraint firstItem="ut3-Hf-iPq" firstAttribute="centerX" secondItem="GLM-dj-L9N" secondAttribute="centerX" id="0GL-fz-3DK"/>
                             <constraint firstItem="Ewp-2Q-KA4" firstAttribute="centerX" secondItem="ut3-Hf-iPq" secondAttribute="centerX" id="772-GS-QRe"/>
@@ -188,7 +192,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <viewLayoutGuide key="safeArea" id="Dhk-0A-iko"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="backgroundColor" red="0.99215686270000003" green="0.98039215690000003" blue="0.85098039219999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                     </view>
                     <navigationItem key="navigationItem" id="t36-Ib-Z0Y"/>
                 </viewController>
@@ -216,7 +220,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="p0X-1y-37i"/>
+        <segue reference="kRj-Va-3Kh"/>
     </inferredMetricsTieBreakers>
     <resources>
         <systemColor name="systemGray6Color">

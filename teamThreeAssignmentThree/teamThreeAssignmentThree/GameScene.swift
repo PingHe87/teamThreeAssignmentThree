@@ -28,7 +28,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var motionManager: CMMotionManager!
 
     override func didMove(to view: SKView) {
-        self.backgroundColor = .white
+        self.backgroundColor = UIColor(red: 253/255, green: 250/255, blue: 217/255, alpha: 1.0)
+
         
         // 每次进入游戏时重置所有状态
         resetGame()
