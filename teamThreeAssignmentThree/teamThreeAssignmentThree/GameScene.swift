@@ -30,18 +30,17 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     override func didMove(to view: SKView) {
         self.backgroundColor = UIColor(red: 253/255, green: 250/255, blue: 217/255, alpha: 1.0)
 
-        
-        // 每次进入游戏时重置所有状态
+        // Reset all states when entering the game
         resetGame()
         
-        // 禁用全局重力
+        // Disable global gravity
         self.physicsWorld.gravity = CGVector(dx: 0, dy: 0)
         
-        // 设置物理世界边界
+        // Set physics world boundaries
         self.physicsBody = SKPhysicsBody(edgeLoopFrom: self.frame)
         self.physicsWorld.contactDelegate = self
         
-        // 创建小球
+        // Create ball
         let ballTexture = SKTexture(imageNamed: "Kunkun")
         ballNode = SKSpriteNode(texture: ballTexture)
         ballNode.size = CGSize(width: 50, height: 50)
@@ -52,7 +51,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         ballNode.physicsBody?.linearDamping = 0.5
         addChild(ballNode)
 
-        // 添加分数标签
+        // Add score label
         scoreLabel = SKLabelNode(fontNamed: "Helvetica")
         scoreLabel.fontSize = 24
         scoreLabel.fontColor = .black
@@ -60,54 +59,52 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         scoreLabel.text = "Score: 0"
         addChild(scoreLabel)
         
-        // 创建倒计时标签
+        // Create countdown label
         countdownLabel = SKLabelNode(fontNamed: "Helvetica-Bold")
         countdownLabel.fontSize = 100
         countdownLabel.fontColor = .gray
-        countdownLabel.alpha = 0.5  // 半透明
+        countdownLabel.alpha = 0.5  // Semi-transparent
         countdownLabel.position = CGPoint(x: self.frame.midX, y: self.frame.midY)
         countdownLabel.text = "\(countdown)"
         addChild(countdownLabel)
         
-        // 创建金币
+        // Create coins
         for _ in 20...30 {
             createCoin()
         }
 
-        // 初始化 MotionManager
+        // Initialize MotionManager
         motionManager = CMMotionManager()
         if motionManager.isDeviceMotionAvailable {
-            motionManager.deviceMotionUpdateInterval = 1.0 / 60.0  // 每秒 60 次
+            motionManager.deviceMotionUpdateInterval = 1.0 / 60.0  // 60 updates per second
             motionManager.startDeviceMotionUpdates(to: OperationQueue.main) { [weak self] (data, error) in
                 if let data = data {
-                    // 获取重力方向，x 和 y 轴
+                    // Get gravity direction for x and y axes
                     let gravity = data.gravity
                     
-                    // 使用重力方向控制小球的运动
+                    // Control ball movement using gravity direction
                     self?.updateBallMovement(x: gravity.x, y: gravity.y)
                 }
             }
         }
         
-        // 启动倒计时
+        // Start countdown timer
         startCountdown()
     }
 
     func resetGame() {
-        score = 0  // 重置得分
-//        countdown = 10  // 重置倒计时
-        currency = 0  // 重置步数货币
+        score = 0  // Reset score
+        currency = 0  // Reset currency
     }
 
-
     override func willMove(from view: SKView) {
-        // 停止运动数据更新
+        // Stop motion data updates
         motionManager.stopDeviceMotionUpdates()
-        // 停止倒计时
+        // Stop countdown timer
         countdownTimer?.invalidate()
     }
 
-    // 创建金币
+    // Create coin
     func createCoin() {
         let coin = SKSpriteNode(imageNamed: "coin")
         coin.size = CGSize(width: 30, height: 30)
@@ -120,7 +117,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         addChild(coin)
     }
 
-    // 碰撞检测回调
+    // Collision detection callback
     func didBegin(_ contact: SKPhysicsContact) {
         let contactA = contact.bodyA.node
         let contactB = contact.bodyB.node
@@ -136,7 +133,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     }
 
     func updateBallMovement(x: Double, y: Double) {
-        // 设置阈值，避免微小的重力数据导致小球移动
+        // Set threshold to avoid minor movements due to small gravity values
         let threshold: Double = 0.02
         
         var adjustedX = x
@@ -149,14 +146,14 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             adjustedY = 0
         }
         
-        // 施加力，使用经过调整的重力值
+        // Apply force using adjusted gravity values
         let force = CGVector(dx: adjustedX * 100, dy: adjustedY * 100)
         ballNode.physicsBody?.applyForce(force)
     }
     
-    // 启动倒计时
+    // Start countdown timer
     func startCountdown() {
-        countdownTimer?.invalidate()  // 确保之前的 Timer 停止
+        countdownTimer?.invalidate()  // Ensure previous timer is stopped
 
         countdownTimer = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true) { [weak self] timer in
             self?.countdown -= 1
@@ -172,29 +169,24 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         }
     }
 
-
     func endGame() {
-        countdownTimer?.invalidate()  // 停止倒计时
+        countdownTimer?.invalidate()  // Stop countdown timer
         
-        print("EndGame called. Score: \(score)")  // 添加日志确认
+        print("EndGame called. Score: \(score)")  // Log confirmation
 
-        // 清理当前场景的所有节点和动作，避免残留
+        // Clear all nodes and actions in the current scene
         self.removeAllChildren()
         self.removeAllActions()
 
-        // 切换到结束界面，不再使用 nil 清空场景
+        // Switch to GameOverScene
         let gameOverScene = GameOverScene(size: self.size, finalScore: score)
         self.view?.presentScene(gameOverScene, transition: SKTransition.fade(withDuration: 1.0))
         
-        print("Scene switched to GameOverScene.")  // 添加日志确认场景切换
+        print("Scene switched to GameOverScene.")  // Log scene switch
     }
-
-
-
-
 }
 
-// 结束场景
+// Game over scene
 class GameOverScene: SKScene {
     var finalScore: Int = 0
     
@@ -208,14 +200,14 @@ class GameOverScene: SKScene {
     }
     
     override func didMove(to view: SKView) {
-        print("GameOverScene did move to view.")  // 添加日志确认
+        print("GameOverScene did move to view.")  // Log confirmation
         
-        self.backgroundColor = .white
+        self.backgroundColor = UIColor(red: 253/255, green: 250/255, blue: 217/255, alpha: 1.0)
 
-        // "Congratulations!" 作为一行单独显示
+        // Display "Congratulations!" as a separate line
         let congratsLabel = SKLabelNode(fontNamed: "Helvetica-Bold")
         congratsLabel.fontSize = 40
-        congratsLabel.fontColor = .black
+        congratsLabel.fontColor = UIColor(red: 98/255, green: 86/255, blue: 202/255, alpha: 1.0)
         congratsLabel.position = CGPoint(x: self.frame.midX, y: self.frame.midY + 40)
         congratsLabel.text = "Congratulations!"
         congratsLabel.horizontalAlignmentMode = .center
@@ -223,10 +215,10 @@ class GameOverScene: SKScene {
 
         print("Congrats label added. Position: \(congratsLabel.position), Text: \(congratsLabel.text ?? "")")
         
-        // "Your score is XX" 作为第二行显示
+        // Display "Your score is XX" as the second line
         let scoreLabel = SKLabelNode(fontNamed: "Helvetica-Bold")
         scoreLabel.fontSize = 40
-        scoreLabel.fontColor = .black
+        scoreLabel.fontColor = UIColor(red: 98/255, green: 86/255, blue: 202/255, alpha: 1.0)
         scoreLabel.position = CGPoint(x: self.frame.midX, y: self.frame.midY - 20)
         scoreLabel.text = "Your score is \(finalScore)"
         scoreLabel.horizontalAlignmentMode = .center
@@ -234,5 +226,5 @@ class GameOverScene: SKScene {
         
         print("Score label added. Position: \(scoreLabel.position), Text: \(scoreLabel.text ?? "")")
     }
-
 }
+

@@ -12,50 +12,50 @@ import CoreMotion
 class ModuleBViewController: UIViewController, MotionDelegate {
     var motionModel = MotionModel()
     var skView: SKView!
-    var currency = 0  // 通过步数获取货币
-    var gameTime: Int = 10  // 默认游戏时间为10秒
+    var currency = 0  // Currency earned through steps
+    var gameTime: Int = 10  // Default game time in seconds
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // 设置 motionModel 的代理
+        // Set motionModel delegate
         motionModel.delegate = self
 
-        // 启动步数和加速度计监控
+        // Start monitoring pedometer and accelerometer
         motionModel.startPedometerMonitoring()
         motionModel.startAccelerometerMonitoring()
 
-        // 设置 SpriteKit view
+        // Set up SpriteKit view
         if let view = self.view as? SKView {
             skView = view
             let scene = GameScene(size: view.bounds.size)
             scene.scaleMode = .aspectFill
-            scene.currency = currency // 传递步数货币
-            scene.countdown = gameTime  // 将从 Module A 传递的游戏时间设置为倒计时
+            scene.currency = currency // Pass currency to the game scene
+            scene.countdown = gameTime  // Set countdown timer from Module A
             skView.presentScene(scene)
         }
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        // 停止所有监控
+        // Stop all monitoring
         motionModel.stopMonitoring()
     }
 
-    // 更新步数货币
+    // Update currency based on step count
     func pedometerUpdated(pedData: CMPedometerData) {
         currency = Int(pedData.numberOfSteps.doubleValue / 1000)
-        print("Currency: \(currency)") // 可用于游戏解锁道具
+        print("Currency: \(currency)") // Can be used for unlocking game items
     }
 
-    // 通过加速度计数据更新游戏物体运动
+    // Update game object movement based on accelerometer data
     func accelerometerUpdated(x: Double, y: Double, z: Double) {
         if let gameScene = skView.scene as? GameScene {
-            gameScene.updateBallMovement(x: x, y: y)  // 更新小球运动
+            gameScene.updateBallMovement(x: x, y: y)  // Update ball movement
         }
     }
 
     func activityUpdated(activity: CMMotionActivity) {
-        // 根据活动调整游戏难度或其他逻辑
+        // Adjust game difficulty or other logic based on activity
     }
 }

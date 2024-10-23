@@ -94,8 +94,7 @@ class MotionModel{
             motionManager.stopAccelerometerUpdates()
         }
         
-    //n
-    // 获取今天的步数，从凌晨到当前时间
+    //Get Today Steps
         func getTodaySteps(completion: @escaping (Double) -> Void) {
             let calendar = Calendar.current
             let startOfDay = calendar.startOfDay(for: Date()) // 获取今天凌晨的时间
