@@ -10,6 +10,9 @@ import CoreMotion
 
 class ModuleAViewController: UIViewController {
     
+    // 添加一个变量来追踪对话框是否已经显示
+    var goalAchievedAlertShown = false
+    
     let motionModel = MotionModel()
     var stepGoal: Int = 1000 // 默认步数目标
     var currentSteps: Int = 0 // 保存当前步数
@@ -130,17 +133,56 @@ extension ModuleAViewController: MotionDelegate {
     }
 
     func pedometerUpdated(pedData: CMPedometerData) {
-        DispatchQueue.main.async {
-            self.currentSteps = pedData.numberOfSteps.intValue // 保存当前步数到变量
-            self.stepsTodayLabel.text = "Today's Steps: \(self.currentSteps)"
-            
-            // 更新进度条和剩余步数
-            self.updateStepsRemaining(currentSteps: self.currentSteps)
+            DispatchQueue.main.async {
+                self.currentSteps = pedData.numberOfSteps.intValue
+                self.stepsTodayLabel.text = "Today's Steps: \(self.currentSteps)"
+                
+                // 更新进度条和剩余步数
+                self.updateStepsRemaining(currentSteps: self.currentSteps)
+                
+                // 检查用户是否达到了目标步数并且未显示过对话框
+                if self.currentSteps >= self.stepGoal && !self.goalAchievedAlertShown {
+                    self.showGoalAchievedAlert()  // 弹出对话框
+                    self.goalAchievedAlertShown = true  // 标记对话框已经显示
+                }
+            }
         }
-    }
+        
+        func showGoalAchievedAlert() {
+            // 创建 UIAlertController
+            let alert = UIAlertController(title: "Congratulations!",
+                                          message: "You've reached your step goal! Play a game to relax with 10 extra seconds!",
+                                          preferredStyle: .alert)
+            
+            // 添加 "Play Game" 按钮，点击后导航到 Module B
+            let playGameAction = UIAlertAction(title: "Play Game", style: .default) { (_) in
+                self.performSegue(withIdentifier: "toModuleB", sender: self)
+            }
+            
+            // 添加 "Cancel" 按钮，点击后关闭对话框
+            let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+            
+            // 将按钮添加到 UIAlertController
+            alert.addAction(playGameAction)
+            alert.addAction(cancelAction)
+            
+            // 显示对话框
+            self.present(alert, animated: true, completion: nil)
+        }
+
+
+
     // 实现 accelerometerUpdated 方法，虽然在 ModuleA 中可能不需要用到它，但必须实现
         func accelerometerUpdated(x: Double, y: Double, z: Double) {
             // set it bull
         }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "toModuleB" {  // 确保这个 identifier 和 Storyboard 中的 segue 一致
+            let destinationVC = segue.destination as! ModuleBViewController
+            destinationVC.gameTime = 20  // 传递20秒游戏时间
+        }
+    }
+
 }
 

@@ -13,6 +13,7 @@ class ModuleBViewController: UIViewController, MotionDelegate {
     var motionModel = MotionModel()
     var skView: SKView!
     var currency = 0  // 通过步数获取货币
+    var gameTime: Int = 10  // 默认游戏时间为10秒
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -30,6 +31,7 @@ class ModuleBViewController: UIViewController, MotionDelegate {
             let scene = GameScene(size: view.bounds.size)
             scene.scaleMode = .aspectFill
             scene.currency = currency // 传递步数货币
+            scene.countdown = gameTime  // 将从 Module A 传递的游戏时间设置为倒计时
             skView.presentScene(scene)
         }
     }
@@ -57,4 +59,3 @@ class ModuleBViewController: UIViewController, MotionDelegate {
         // 根据活动调整游戏难度或其他逻辑
     }
 }
-

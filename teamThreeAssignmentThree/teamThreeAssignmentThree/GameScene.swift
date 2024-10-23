@@ -69,7 +69,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         addChild(countdownLabel)
         
         // 创建金币
-        for _ in 1...5 {
+        for _ in 10...20 {
             createCoin()
         }
 
@@ -94,7 +94,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
 
     func resetGame() {
         score = 0  // 重置得分
-        countdown = 10  // 重置倒计时
+//        countdown = 10  // 重置倒计时
         currency = 0  // 重置步数货币
     }
 
@@ -156,13 +156,13 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     // 启动倒计时
     func startCountdown() {
         countdownTimer?.invalidate()  // 确保之前的 Timer 停止
-        
+
         countdownTimer = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true) { [weak self] timer in
             self?.countdown -= 1
             self?.countdownLabel.text = "\(self?.countdown ?? 0)"
-            
+
             print("Timer fired. Countdown: \(self?.countdown ?? -1)")
-            
+
             if self?.countdown == 0 {
                 timer.invalidate()
                 print("Countdown reached zero. Ending game.")
@@ -170,6 +170,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             }
         }
     }
+
 
     func endGame() {
         countdownTimer?.invalidate()  // 停止倒计时
